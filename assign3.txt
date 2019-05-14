@@ -1,5 +1,3 @@
-Assign3: Due 11:59 PM March 29th
-
 In this assignment, we will use the TDD approach to create a diagramming application. The application will have a GUI, but we will keep the logic test driven and separated from the GUI.
 
 1. The application will present to the user a number of shapes like Circle,
@@ -88,22 +86,3 @@ In the whole journey, we even forget that there were other courses too. We were 
 3. Were there any surprises or unexpected learnings?
 
 We were really surprised at the last moment when we were asked to respect the OCP principle while creating shapes button. We never imaged that we had to use Reflection to achieve this. And to fix that we tried a lot and spent almost a day but failed and were demotivated. Finally, professor feedback helped us to achieve this unexpected behavior. But yes, that is totally new and unexpected learning for us.  
-
-
-
-Total [100]: 98
-
-Program builds and runs [20]:
-
-Able to place circle, rectangle, square, group, move, ungroup, delete, save, load [10]: -2
-
-After groping two shapes, the move of the group seems to lose on of the shapes.      
-How to ungroup?
-
-All tests pass [10]:
-Code coverage [10]:
-Test quality [10]:
-Design quality [10]:       
-Code quality [10]:
-Design supports adding new shapes without code change [10]:
-Response to questions [10]:
