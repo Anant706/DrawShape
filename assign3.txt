@@ -1,0 +1,109 @@
+Assign3: Due 11:59 PM March 29th
+
+In this assignment, we will use the TDD approach to create a diagramming application. The application will have a GUI, but we will keep the logic test driven and separated from the GUI.
+
+1. The application will present to the user a number of shapes like Circle,
+Square, Rectangle, etc. 
+
+2. The user can drag and drop shapes on to a diagram from a panel of shapes.
+
+3. The user can move a shape that has been already placed on a diagram.
+
+4. The user can delete a shape from the diagram by selecting it with a delete tool.
+
+5. The user can select a number of shapes and group them.
+
+6. If a group is moved, the shapes in its move.
+
+7. If a group is deleted, everything in it is deleted.
+
+8. A group may contain other groups.
+
+9. A user may ungroup a group.
+
+10. Shapes have properties (like center and radius for a circle).
+
+11. The user can save a diagram and can open saved diagrams.
+
+We will write the app so that if a user decides to add another shape (say a 
+triangle), there will not be any code change to the application. They should be able to introduce the code for the new shapes quite easily.
+
+Remember to bring forward the good practices we have learned so far. You know 
+the drill about the early start, frequent reviews, and responding to feedback quickly.
+
+Let's focus on the following after the coding is completed:
+
+Instructions to use:
+Single shape:
+ To add shape, click on shape button and provide x and y location of the shape.
+ To move the shape, select a shape and move it to a new location, the shape will be moved to that location
+ To delete the shape, right click on the shape and it should be deleted.
+
+Group:
+ To add a group, create few shapes, click on "Create group" button and drag the mouse over the shape, a group will get created.
+ To move a group, select a shape in the group and move it to a new location, the group will be moved to that location.
+ To delete a group, right click on any shape in the group and the group should be deleted.
+
+1. What design principles did we use in this assignment?
+
+1. Single Responsibility Principle
+
+In the design, each shape class(Circle, rectangle, square) has a single responsibility and single reason to change. Each shape has the behavior of moving itself to a new location, also checking whether a point is on it or not and whether it is in a rectangular region or not. Also, a circle class would change only if the behavior of circle changes, as it is not dependent on any other class. We have implemented the same in the classes extending DrawShape. Any class extending DrawShape knows how to draw a given shape. Also, we have a diagram class which is responsible for manipulating shapes inside it. 
+
+2. Do not repeat yourself(DRY) 
+We would have type checks, whether a shape is an instanceOf circle or square, everywhere in the code, especially before drawing and saving the shapes. We would have   
+
+
+3. Yet not required(YAGNI)
+We had initially violated this principle by implementing Shape upfront. Soon, we learned that Shape is too abstract and was not needed at that point in time. When we later added diagram class, we realized we need to have Shape behavior abstracted out as an interface.   
+
+4. Dependency Inversion (DIP) Principle
+Our UI class needed to interact with multiple shapes. We abstracted out the behavior in the Shape interface. Now Canvas UI makes use of Shape interface and Circle, Square and Rectangle follow Shape contract. Thus, it acts as a abstraction between the two levels. 
+
+5. Liskov Substitution Principle(LSP)
+Our code is heavily dependent on LSP. Shapes like circle, square and rectangle needed to be substitutable in Diagram class, so we created Shape interface. Due to the polymorphic nature, we don't have multiple methods for each shape behavior. For example, we avoided implementing methods like drawCircle, drawRectangle, instead we have draw method which is passed the shape that needs to be drawn. 
+
+6. Open Closed Principle(OCP)
+The problem statement at hand required to be designed in a way such that we are able to add a new Shape to the diagram without modifying the current code. We made the code OCP compliant with the help of reflections. The application identifies which type of shape should be drawn on the diagram during runtime. Initially, we had implemented that feature using instanceOf method, which is static in nature. Such type checks cause code to be modified later, violating OCP. 
+
+
+2. What were some of the challenges you ran into when creating the program?
+
+Talking about the challenges, we faced lots of problem in identifying the real behavior of different features. In the beginning, we struggled a few days to get the basic features running. Due to initial problems we got nervous and decided to give much time and attention if we have to complete the things on time. In the hurry, we missed the strategic design and faced lots of issues afterward.
+
+When we started our initial test cases development, we messed up with "isPointOn" feature. We miss-understood the expected behavior and for that, we struggled a lot. After getting the review we understood behavior and refactored the code a lot. 
+
+We also faced a problem with mathematical coordinates calculation of shapes. Earlier we were taking any random points for the shapes and each time for different shapes, we struggled to get the next point, etc. And to handle this problem, we decided to keep one metric which will be common for all. For all the shapes, we tried keeping the common starting coordinates with the same length, breadth, and radius.
+
+In the 3rd set of test cases, where we had to implement "selectAt", we again get lost in the complexity of selecting the proper shapes. We tried and studied various possible data-structure and finally come with ArrayList. 
+
+In the 4th set of test cases, we came up with a new problem of grouping. In the starting, we were not clear why we need this feature but after watching MS-PowerPoint, Draw.io and other, we came up with the idea of grouping. After getting the basic understanding, we were not much confidence in our implementations. We tried lots of experiments to get the things done but again it killed most of our time.
+
+Then came the real issue of saving and load. We were totally lost on how to achieve this feature. We googled everywhere to learn how to save objects in Java. Initially, we came up with the idea that keeping in JSON will easy our life in handling the objects, etc. But all our approach failed when we received the review for the mess we created. We then tried keeping it in a normal text file using Serialized interface. However, we totally failed to understand the real motive of saving the diagram. Then after receiving some hint and feedback, we were again back on track.
+
+By this time, we already had seen lots of hip-hop in this assignment. We never expected that the real roller coaster is yet to come. When we started developing the GUI, we realized the real power of TDD design. We had no experience in JavaFX and struggled the most in doing the things. We spent hours and hours in implementing one feature. When one thing is done, the second thing is getting affected. We were lost in the puzzle of fixing the issues and emerging side-effects.
+
+In the whole journey, we even forget that there were other courses too. We were so deeply involved in the assignment, that we started enjoying in fixing the problem. Lots of memory is yet to share.  
+
+3. Were there any surprises or unexpected learnings?
+
+We were really surprised at the last moment when we were asked to respect the OCP principle while creating shapes button. We never imaged that we had to use Reflection to achieve this. And to fix that we tried a lot and spent almost a day but failed and were demotivated. Finally, professor feedback helped us to achieve this unexpected behavior. But yes, that is totally new and unexpected learning for us.  
+
+
+
+Total [100]: 98
+
+Program builds and runs [20]:
+
+Able to place circle, rectangle, square, group, move, ungroup, delete, save, load [10]: -2
+
+After groping two shapes, the move of the group seems to lose on of the shapes.      
+How to ungroup?
+
+All tests pass [10]:
+Code coverage [10]:
+Test quality [10]:
+Design quality [10]:       
+Code quality [10]:
+Design supports adding new shapes without code change [10]:
+Response to questions [10]:
